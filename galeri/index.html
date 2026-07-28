@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri Foto — Class 7.7 SMPN 5 Tambun Selatan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Baloo+2:wght@600;700;800&family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.badge-mark{
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  overflow:hidden;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 20px rgba(62,141,255,0.5);
+}
+
+.badge-mark img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+  :root{
+    --bg-deep:#050B18;
+    --bg-mid:#0B1E3E;
+    --blue:#3E8DFF;
+    --blue-light:#8FC6FF;
+    --white:#F5F9FF;
+    --glass:rgba(255,255,255,0.06);
+    --glass-border:rgba(255,255,255,0.14);
+    --glass-strong:rgba(255,255,255,0.10);
+    --text-soft:rgba(245,249,255,0.68);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% -5%, rgba(62,141,255,0.28), transparent 60%),
+      radial-gradient(ellipse 800px 700px at 100% 20%, rgba(143,198,255,0.16), transparent 55%),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 55%, var(--bg-deep) 100%);
+    color:var(--white);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    position:relative;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  #particles{position:fixed; inset:0; z-index:0; pointer-events:none; width:100vw; height:100vh;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 24px; position:relative; z-index:2;}
+
+  .glass{
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-radius:22px;
+  }
+
+  header{position:sticky; top:0; z-index:50; padding:16px 0;}
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 22px;
+    background:rgba(9,17,38,0.55);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-radius:100px;
+  }
+  .badge{display:flex; align-items:center; gap:12px;}
+  .badge-mark{
+    width:42px; height:42px; border-radius:14px;
+    background:linear-gradient(135deg, var(--blue), var(--blue-light));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Sora', sans-serif; font-weight:800; font-size:13px; color:#04101F;
+    box-shadow:0 0 20px rgba(62,141,255,0.5);
+  }
+  .badge-text{font-weight:700; font-size:15.5px; font-family:'Sora',sans-serif;}
+  .badge-sub{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-soft); text-transform:uppercase; letter-spacing:0.1em;}
+  nav ul{list-style:none; display:flex; gap:8px; margin:0; padding:0;}
+  nav a{
+    text-decoration:none; font-weight:500; font-size:14px; color:var(--text-soft);
+    padding:8px 16px; border-radius:100px; transition:all .2s ease; display:inline-block;
+  }
+  nav a:hover{color:var(--white); background:rgba(255,255,255,0.08);}
+  nav a.active{color:var(--white); background:rgba(62,141,255,0.18);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--blue-light); outline-offset:3px;}
+  .nav-toggle{display:none;}
+
+  @media (max-width:720px){
+    nav ul{position:absolute; right:24px; top:70px; flex-direction:column; padding:14px; gap:6px; display:none;
+      background:rgba(9,17,38,0.85); border:1px solid var(--glass-border); border-radius:18px; backdrop-filter:blur(20px);}
+    nav ul.open{display:flex;}
+    .nav-toggle{display:block; background:var(--glass); border:1px solid var(--glass-border); color:var(--white); border-radius:10px; padding:7px 12px; font-size:16px; cursor:pointer;}
+  }
+
+  section{padding:56px 0;}
+  .sec-head{margin-bottom:34px; text-align:center;}
+  .sec-label{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--blue-light); font-weight:500;
+    display:block; margin-bottom:10px;
+  }
+  .sec-head h2{
+    font-family:'Rubik Wet Paint',cursive;
+    font-size:clamp(28px,4.2vw,38px); margin:0; font-weight:400; letter-spacing:0px;
+  }
+  .page-hero{padding:60px 0 20px; text-align:center;}
+
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:18px;
+  }
+  .gallery-item{position:relative; aspect-ratio:4/3; overflow:hidden; padding:0; cursor:pointer;}
+  .gallery-item img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;}
+  .gallery-item:hover img{transform:scale(1.08);}
+  .gallery-item .cap{
+    position:absolute; left:0; right:0; bottom:0; padding:10px 14px;
+    background:linear-gradient(180deg, transparent, rgba(5,11,24,0.85));
+    font-size:12.5px; font-weight:500; color:var(--white);
+    opacity:0; transition:opacity .3s ease;
+  }
+  .gallery-item:hover .cap{opacity:1;}
+  .gallery-item.placeholder{
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px;
+    color:var(--text-soft); font-size:12px; text-align:center; padding:14px;
+    border:1px dashed var(--glass-border);
+  }
+  .gallery-item.placeholder span:first-child{font-size:26px;}
+  .note-hint{
+    text-align:center; font-family:'JetBrains Mono',monospace; font-size:11.5px;
+    color:var(--text-soft); margin-top:20px; opacity:.7;
+  }
+
+  .lightbox{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(3,7,16,0.92);
+    display:none; align-items:center; justify-content:center;
+    padding:24px; backdrop-filter:blur(6px);
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:85vh; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .lightbox-close{
+    position:absolute; top:20px; right:24px; width:40px; height:40px; border-radius:50%;
+    background:var(--glass); border:1px solid var(--glass-border);
+    color:var(--white); font-size:20px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  footer{padding:44px 0 60px; text-align:center;}
+  footer p{margin:5px 0; color:var(--text-soft); font-size:13px;}
+  footer .sig{
+    font-family:'Rubik Wet Paint',cursive; font-size:26px; font-weight:400; letter-spacing:0px;
+    background:linear-gradient(90deg, var(--white), var(--blue-light));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    display:inline-block; margin-bottom:6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<header>
+  <nav class="wrap">
+    <div class="badge">
+<div class="badge-mark">
+  <img src="../assets/logo.png" alt="Logo Class 7.7">
+</div>
+      <div>
+        <div class="badge-text">Class VII – 7</div>
+        <div class="badge-sub">SMPN 5 Tambun Selatan</div>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+    <ul id="navMenu">
+        <a href="../index.html">— Beranda</a>
+      <li><a href="../index.html#tentang">About 7.7</a></li>
+      <li><a href="index.html" class="active">Photo Gallery</a></li>
+      <li><a href="../struktur/index.html">Structure Organization</a></li>
+      <li><a href="community/index.html">VII – 7 Community</a></li>  
+      <li><a href="dashboard/index.html">Dashboard Login</a></li>
+      <li><a href="../index.html#Jadwal-pelajaran">Jadwal Pelajaran</a></li>
+      <li><a href="../index.html#Jadwal-piket">Jadwal Piket</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-hero wrap">
+  <span class="sec-label">Class VII – 7</span>
+</div>
+
+<section id="galeri">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-label">Class Moment</span>
+      <h2>Photo Gallery</h2>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Foto di-generate otomatis lewat JS dari daftar "photoList" di bagian bawah file -->
+    </div>
+    <p class="note-hint">Click photo to enlarge</p>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<footer class="wrap">
+  <div class="sig">Class VII – 7</div>
+  <p>SMPN 5 Tambun Selatan</p>
+  <p><a href="../index.html" style="text-decoration:underline;">← Kembali ke Beranda</a></p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  document.querySelectorAll('#navMenu a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, particles;
+  function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  function initParticles(){
+    const count = Math.min(110, Math.floor((w*h)/16000));
+    particles = Array.from({length:count}, () => ({
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*1.8 + 0.6,
+      vx: (Math.random()-0.5)*0.6, vy: (Math.random()-0.5)*0.6,
+      a: Math.random()*0.5 + 0.25
+    }));
+  }
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < -10) p.x = w+10; if(p.x > w+10) p.x = -10;
+      if(p.y < -10) p.y = h+10; if(p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(143,198,255,${p.a})`;
+      ctx.shadowColor = 'rgba(62,141,255,0.8)';
+      ctx.shadowBlur = 6;
+      ctx.fill();
+    }
+    for(let i=0; i<particles.length; i++){
+      for(let j=i+1; j<particles.length; j++){
+        const a = particles[i], b = particles[j];
+        const dx = a.x-b.x, dy = a.y-b.y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+        if(dist < 120){
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(143,198,255,${0.12*(1-dist/120)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+    if(!prefersReduced) requestAnimationFrame(step);
+  }
+  window.addEventListener('resize', () => { resize(); initParticles(); });
+  resize(); initParticles(); step();
+
+  // ===== Gallery: auto-generated from photoList =====
+  // CARA NAMBAH FOTO:
+  // 1. Upload file foto ke folder "foto/" (di dalam folder "galeri/" ini juga).
+  // 2. Tambahkan satu baris baru di array photoList di bawah, formatnya:
+  //    { src: "foto/nama-file.jpg", caption: "Keterangan foto" }
+  // 3. Simpan & refresh halaman — foto otomatis muncul, urut sesuai urutan array.
+const photoList = [
+  { src: "../assets/foto1.png", caption: "Masa Pengenalan Lingkungam Sekolah" },
+  { src: "../assets/foto2.png", caption: "Masa Pengenalan Lingkungam Sekolah" },
+  { src: "../assets/foto3.png", caption: "Masa Pengenalan Lingkungam Sekolah" },
+  { src: "../assets/foto4.png", caption: "Masa Pengenalan Lingkungam Sekolah" },
+  { src: "../assets/foto3.png", caption: "Masa Pengenalan Lingkungam Sekolah" },
+    // { src: "foto/foto4.jpg", caption: "Tambahkan di sini" },
+  ];
+
+  const galleryGrid = document.getElementById('galleryGrid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function renderGallery(){
+    if(photoList.length === 0){
+      galleryGrid.innerHTML = '<div class="gallery-item placeholder glass"><span>➕</span><span>Belum ada foto.<br>Tambahkan lewat array photoList</span></div>';
+      return;
+    }
+    galleryGrid.innerHTML = photoList.map(photo => `
+      <div class="gallery-item glass">
+        <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
+        <span class="cap">${photo.caption}</span>
+      </div>
+    `).join('');
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+  }
+  renderGallery();
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
